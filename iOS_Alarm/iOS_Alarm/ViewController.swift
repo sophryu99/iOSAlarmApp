@@ -11,16 +11,25 @@ import UIKit
 class ViewController: UIViewController {
     
     var appDelegate = UIApplication.shared.delegate as? AppDelegate
+    var alarmList : [Alarm] = []
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet var timmerPicker: UIDatePicker!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert], completionHandler: { (didAllow, error) in
+            
+        })
+        UNUserNotificationCenter.current().delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        setAlarmList()
+    }
+    
     @IBAction func showNotificationAction(_ sender: Any) {
         print("date= \(timmerPicker.date)")
-        //        let calendar = Calendar.current
-        //        var components = calendar.dateComponents([.day, .month, .year,.hour,.minute,.second], from: Date())
-        //        let tempDate = calendar.date(from: components)
-        //        print(tempDate)
-        
-        //appDelegate?.showEduNotification(date: timmerPicker.date)
         
         for index in 1...3 {
             
@@ -33,7 +42,6 @@ class ViewController: UIViewController {
             content.summaryArgumentCount = 10
             
             //Setting time for notification trigger
-            //블로그 예제에서는 TimeIntervalNotificationTrigger을 사용했지만, UNCalendarNotificationTrigger사용법도 같이 올려놓을게요!
             
             //1. Use UNCalendarNotificationTrigger
             let date = Date(timeIntervalSinceNow: 70)
@@ -55,20 +63,21 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert], completionHandler: { (didAllow, error) in
-            
-        })
-        UNUserNotificationCenter.current().delegate = self
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func setAlarmList() {
+        let alarm1 = Alarm(time: "4:30", amPm: "PM", alarmSwitch: true)
+        let alarm2 = Alarm(time: "4:30", amPm: "PM", alarmSwitch: true)
+
+        let alarm3 = Alarm(time: "4:30", amPm: "PM", alarmSwitch: true)
+        let alarm4 = Alarm(time: "4:30", amPm: "PM", alarmSwitch: true)
+        let alarm5 = Alarm(time: "4:30", amPm: "PM", alarmSwitch: true)
+
+        
+        alarmList = [alarm1, alarm2, alarm3, alarm4, alarm5]
     }
     
     
@@ -77,8 +86,7 @@ class ViewController: UIViewController {
 extension ViewController : UNUserNotificationCenterDelegate {
     //To display notifications when app is running  inforeground
     
-    //앱이 foreground에 있을 때. 즉 앱안에 있어도 push알림을 받게 해줍니다.
-    //viewDidLoad()에 UNUserNotificationCenter.current().delegate = self를 추가해주는 것을 잊지마세요.
+    // 앱안에 있어도 push알림 설정
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound, .badge])
     }
@@ -88,6 +96,24 @@ extension ViewController : UNUserNotificationCenterDelegate {
         settingsViewController.view.backgroundColor = .gray
         self.present(settingsViewController, animated: true, completion: nil)
         
+    }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let alarmCell = tableView.dequeueReusableCell(withIdentifier: AlarmTableViewCell.identifier, for: indexPath) as? AlarmTableViewCell
+            else {return UITableViewCell() }
+        return alarmCell
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        80
     }
 }
 

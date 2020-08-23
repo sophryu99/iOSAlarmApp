@@ -13,6 +13,8 @@
 		01802A0824F2A00700554DDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01802A0624F2A00700554DDF /* Main.storyboard */; };
 		01802A0A24F2A00E00554DDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01802A0924F2A00E00554DDF /* Assets.xcassets */; };
 		01802A0D24F2A00E00554DDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01802A0B24F2A00E00554DDF /* LaunchScreen.storyboard */; };
+		01802A1524F2B17200554DDF /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01802A1424F2B17200554DDF /* AlarmTableViewCell.swift */; };
+		01802A1724F2B65B00554DDF /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01802A1624F2B65B00554DDF /* Alarm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		01802A0924F2A00E00554DDF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01802A0C24F2A00E00554DDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01802A0E24F2A00E00554DDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01802A1424F2B17200554DDF /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
+		01802A1624F2B65B00554DDF /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				01802A0924F2A00E00554DDF /* Assets.xcassets */,
 				01802A0B24F2A00E00554DDF /* LaunchScreen.storyboard */,
 				01802A0E24F2A00E00554DDF /* Info.plist */,
+				01802A1424F2B17200554DDF /* AlarmTableViewCell.swift */,
+				01802A1624F2B65B00554DDF /* Alarm.swift */,
 			);
 			path = iOS_Alarm;
 			sourceTree = "<group>";
@@ -140,7 +146,9 @@
 			files = (
 				01802A0524F2A00700554DDF /* ViewController.swift in Sources */,
 				01802A0124F2A00700554DDF /* AppDelegate.swift in Sources */,
+				01802A1724F2B65B00554DDF /* Alarm.swift in Sources */,
 				01802A0324F2A00700554DDF /* SceneDelegate.swift in Sources */,
+				01802A1524F2B17200554DDF /* AlarmTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
