@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    static let shared = ViewController()
+
     var appDelegate = UIApplication.shared.delegate as? AppDelegate
     var alarmList : [Alarm] = []
     
@@ -31,13 +32,13 @@ class ViewController: UIViewController {
     @IBAction func showNotificationAction(_ sender: Any) {
         print("date= \(timmerPicker.date)")
         
-        for index in 1...3 {
+        for index in 1...2 {
             
             //Setting content of the notification
             let content = UNMutableNotificationContent()
             content.title = "알람"
-            content.subtitle = "왕초보 일어나세요~~"
-            content.body = "일어나 아 침 이 야"
+            content.subtitle = "왕초보 스터디 할 시간~~"
+            content.body = "다들 클론 코딩해온거 자랑해보자~~"
             content.summaryArgument = "Sehwa Ryu"
             content.summaryArgumentCount = 10
             

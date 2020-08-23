@@ -20,6 +20,38 @@ class AlarmTableViewCell: UITableViewCell {
         if alarmSwitch.isOn {
             timeLabel.textColor = UIColor.white
             amPmLabel.textColor = UIColor.white
+            
+            for index in 1...2 {
+                
+                //Setting content of the notification
+                let content = UNMutableNotificationContent()
+                content.title = "알람"
+                content.subtitle = "왕초보 스터디 할 시간~~"
+                content.body = "다들 클론 코딩해온거 자랑해보자~~"
+                content.summaryArgument = "Sehwa Ryu"
+                content.summaryArgumentCount = 10
+                
+                //Setting time for notification trigger
+                
+                //1. Use UNCalendarNotificationTrigger
+                let date = Date(timeIntervalSinceNow: 70)
+                var dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+                
+                let calendar = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: true)
+                //let calendartrigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: true)
+                
+                
+                //2. Use TimeIntervalNotificationTrigger
+                let TimeIntervalTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+                
+                //Adding Request
+                // MARK: - identifier가 다 달라야만 Notification Grouping이 됩니닷..!!
+                let request = UNNotificationRequest(identifier: "\(index)timerdone", content: content, trigger: TimeIntervalTrigger)
+                
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                
+            }
+            
         } else {
             timeLabel.textColor = UIColor.lightGray
             amPmLabel.textColor = UIColor.lightGray
