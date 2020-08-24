@@ -28,6 +28,7 @@ class AlarmTableViewCell: UITableViewCell {
                 content.title = "알람"
                 content.subtitle = "왕초보 스터디 할 시간~~"
                 content.body = "다들 클론 코딩해온거 자랑해보자~~"
+                content.badge = 2
                 content.summaryArgument = "Sehwa Ryu"
                 content.summaryArgumentCount = 10
                 
@@ -42,10 +43,10 @@ class AlarmTableViewCell: UITableViewCell {
                 
                 
                 //2. Use TimeIntervalNotificationTrigger
-                let TimeIntervalTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+                let TimeIntervalTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
                 
                 //Adding Request
-                // MARK: - identifier가 다 달라야만 Notification Grouping이 됩니닷..!!
+                // 식별자가 다 달라야 notification grouping 이 됨!
                 let request = UNNotificationRequest(identifier: "\(index)timerdone", content: content, trigger: TimeIntervalTrigger)
                 
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
